@@ -4,9 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+
 import ads.com.co.paymentmethods.R;
 
 public class PaypalActivity extends AppCompatActivity {
+
+    private static PayPalConfiguration config = new PayPalConfiguration()
+            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
+            .clientId("YOUR CLIENT ID");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
