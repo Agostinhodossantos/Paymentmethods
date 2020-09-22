@@ -78,4 +78,21 @@ public class PaypalActivity extends AppCompatActivity {
         stopService(new Intent(this, PayPalService.class));
         super.onDestroy();
     }
+
+//    private OrderRequest buildRequestBody() {
+//        OrderRequest orderRequest = new OrderRequest();
+//        orderRequest.intent("AUTHORIZE");
+//
+//        ApplicationContext applicationContext = new ApplicationContext();
+//
+//        List<PurchaseUnitRequest> purchaseUnitRequests = new ArrayList<>();
+//        PurchaseUnitRequest purchaseUnitRequest = new PurchaseUnitRequest()
+//                .amount(new AmountWithBreakdown().currencyCode("USD").value("220.00"));
+//        Payee payee = new Payee();
+//        payee.emailAddress("payee@email.com");
+//        purchaseUnitRequest.payee(payee);
+//        purchaseUnitRequests.add(purchaseUnitRequest);
+//        orderRequest.purchaseUnits(purchaseUnitRequests);
+//        return orderRequest;
+//    }
 }
