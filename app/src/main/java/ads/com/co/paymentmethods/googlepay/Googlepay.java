@@ -79,4 +79,17 @@ public class Googlepay extends AppCompatActivity {
             Toast.makeText(this, "Please Install GPay", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            status = data.getStringExtra("Status").toLowerCase();
+        }
+
+        if ((RESULT_OK == resultCode) && status.equals("success")) {
+            Toast.makeText(this, "Transaction Successful", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Transaction Failed", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
