@@ -3,9 +3,12 @@ package ads.com.co.paymentmethods.googlepay;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import ads.com.co.paymentmethods.R;
 
@@ -46,5 +49,34 @@ public class Googlepay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_googlepay);
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        binding.googlePayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                amount = binding.amountEditText.getText().toString();
+                if (!amount.isEmpty()) {
+                    uri = getUpiPaymentUri(name, upiId, transactionNote, amount);
+                    payWithGPay();
+                } else {
+                    binding.amountEditText.setError("Amount is required!");
+                    binding.amountEditText.requestFocus();
+                }
+
+            }
+        });
+    }
+
+    private void payWithGPay() {
+        if (isAppInstalled(this, GOOGLE_PAY_PACKAGE_NAME)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(uri);
+            intent.setPackage(GOOGLE_PAY_PACKAGE_NAME);
+            startActivityForResult(intent, GOOGLE_PAY_REQUEST_CODE);
+        } else {
+            Toast.makeText(this, "Please Install GPay", Toast.LENGTH_SHORT).show();
+        }
     }
 }
