@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Payment methods</string>
+    <string name="paypal_button">pay</string>
 </resources>
